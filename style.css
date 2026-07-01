@@ -432,3 +432,172 @@ body {
     min-height: 60px;
   }
 }
+/* 背景小裝飾：緩慢漂浮與閃爍 */
+.star {
+  color: var(--accent);
+  font-size: 22px;
+  opacity: 0.7;
+
+  animation: starFloat 4s ease-in-out infinite;
+}
+
+.star-1 {
+  top: 92px;
+  left: 28px;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 170px;
+  right: 34px;
+  animation-delay: 0.8s;
+}
+
+.star-3 {
+  bottom: 132px;
+  left: 30px;
+  animation-delay: 1.4s;
+}
+
+.circle {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  background: var(--main-light);
+  opacity: 0.8;
+
+  animation: circleFloat 5s ease-in-out infinite;
+}
+
+.circle-1 {
+  top: 250px;
+  left: 36px;
+  animation-delay: 0.4s;
+}
+
+.circle-2 {
+  right: 38px;
+  bottom: 220px;
+
+  background: var(--accent-light);
+  animation-delay: 1.2s;
+}
+
+@keyframes starFloat {
+  0% {
+    opacity: 0.35;
+    transform: translateY(0) scale(0.95);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translateY(-8px) scale(1.08);
+  }
+
+  100% {
+    opacity: 0.35;
+    transform: translateY(0) scale(0.95);
+  }
+}
+
+@keyframes circleFloat {
+  0% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+}
+/* 入口按鈕：左到右填滿動畫 */
+.portal {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* 填滿色塊 */
+.portal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: var(--portal-fill);
+  border-radius: inherit;
+
+  transition: width 0.42s ease;
+
+  z-index: 0;
+}
+
+/* 讓文字壓在填滿色塊上面 */
+.portal-title,
+.portal-text {
+  position: relative;
+  z-index: 1;
+
+  transition: color 0.25s ease;
+}
+
+/* hover / 點擊時填滿 */
+.portal:hover::before,
+.portal:active::before {
+  width: 100%;
+}
+
+.portal:hover,
+.portal:active {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 191, 166, 0.16);
+}
+
+/* IG 填滿色 */
+.portal-ig {
+  --portal-fill: var(--main);
+}
+
+.portal-ig:hover .portal-title,
+.portal-ig:hover .portal-text,
+.portal-ig:active .portal-title,
+.portal-ig:active .portal-text {
+  color: #ffffff;
+}
+
+/* FB 填滿色 */
+.portal-fb {
+  --portal-fill: #f8e7c6;
+}
+
+.portal-fb:hover .portal-title,
+.portal-fb:hover .portal-text,
+.portal-fb:active .portal-title,
+.portal-fb:active .portal-text {
+  color: #5b4b31;
+}
+
+/* LINE 填滿色 */
+.portal-line {
+  --portal-fill: var(--accent);
+}
+
+.portal-line:hover .portal-title,
+.portal-line:hover .portal-text,
+.portal-line:active .portal-title,
+.portal-line:active .portal-text {
+  color: #ffffff;
+}
