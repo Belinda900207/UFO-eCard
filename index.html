@@ -3,42 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>電子名片｜你的品牌名稱</title>
+
+  <title>UFO｜Interactive eCard</title>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
-  <main class="card">
-    <section class="profile">
-      <div class="logo">LOGO</div>
+  <main class="ecard-page">
+    <!-- CSS-only 互動開關 -->
+    <input
+      class="enter-toggle"
+      type="checkbox"
+      id="enterToggle"
+    />
 
-      <p class="label">Digital Business Card</p>
-      <h1></h1>
-      <p class="description">
-        這裡放一句簡短介紹，例如：寶可夢卡牌預購｜收藏｜商品資訊
-      </p>
+    <section class="ecard">
+      <!-- 紙感裝飾 -->
+      <div class="paper-dots" aria-hidden="true"></div>
+
+      <!-- 小裝飾 -->
+      <span class="star star-1">✦</span>
+      <span class="star star-2">✧</span>
+      <span class="star star-3">✦</span>
+
+      <span class="circle circle-1"></span>
+      <span class="circle circle-2"></span>
+
+      <!-- 品牌區 -->
+      <header class="brand">
+        <img
+          class="brand-logo"
+          src="./images/ufo-logo.jpg"
+          alt="UFO Logo"
+        />
+
+        <p class="brand-subtitle">
+          卡牌｜玩具｜預購｜收藏
+        </p>
+
+        <h1 class="main-title">
+          WELCOME TO UFO
+        </h1>
+
+      </header>
+
+     
+      <!-- 進入按鈕 -->
+      <label
+        class="enter-button"
+        for="enterToggle"
+      >
+        TAP TO ENTER
+      </label>
+
+      <!-- 社群入口 -->
+      <section class="portal-list" aria-label="UFO 社群入口">
+        <a
+          class="portal portal-ig"
+          href="https://www.instagram.com/ufo.tcgshop?igsh=ZnQ5c2xteTZrdzN1
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="portal-title">IG 星球</span>
+          <span class="portal-text">商品照片｜限動更新</span>
+        </a>
+
+        <a
+          class="portal portal-fb"
+          href="https://www.facebook.com/profile.php?id=61588709266895
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="portal-title">FB 基地</span>
+          <span class="portal-text">最新公告｜活動資訊</span>
+        </a>
+
+        <a
+          class="portal portal-line"
+          href="https://lin.ee/q1mmfNY"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="portal-title">LINE 通訊艙</span>
+          <span class="portal-text">預購詢問｜私訊聯絡</span>
+        </a>
+
+        <details class="contact-box">
+          <summary>CONTACT 補給站</summary>
+
+          <div class="contact-content">
+            <p>預購、商品詢問請優先加入 LINE。</p>
+            <p>IG / FB 會更新最新商品、預購資訊與公告。</p>
+          </div>
+        </details>
+      </section>
+
+      <footer class="footer">
+        <p>© 2026 UFO</p>
+      </footer>
     </section>
-
-    <section class="links">
-      <a class="link-button" href="https://www.instagram.com/你的帳號" target="_blank">
-        Instagram
-      </a>
-
-      <a class="link-button" href="https://www.facebook.com/你的粉專" target="_blank">
-        Facebook
-      </a>
-
-      <a class="link-button line" href="你的 LINE 加好友連結" target="_blank">
-        LINE 加好友
-      </a>
-
-      <a class="link-button secondary" href="mailto:你的信箱@example.com">
-        Email 聯絡
-      </a>
-    </section>
-
-    <footer class="footer">
-      <p>© 2026 你的品牌名稱</p>
-    </footer>
   </main>
 </body>
 </html>

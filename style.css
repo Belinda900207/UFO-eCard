@@ -1,3 +1,23 @@
+:root {
+  --bg: #fff8ec;
+  --card-bg: #fffdf7;
+
+  --main: #00bfa6;
+  --main-dark: #008f80;
+  --main-light: #b8eee4;
+
+  --accent: #ff6b4a;
+  --accent-light: #ffe0d7;
+
+  --yellow: #ffd76a;
+  --text: #263b38;
+  --muted: #7a8a86;
+
+  --cream-border: #f2dfbd;
+  --shadow: rgba(0, 143, 128, 0.14);
+}
+
+/* 全域設定 */
 * {
   box-sizing: border-box;
 }
@@ -5,101 +25,410 @@
 body {
   margin: 0;
   min-height: 100vh;
+
   font-family: Arial, "Noto Sans TC", sans-serif;
-  background: #050505;
-  color: #ffffff;
+  color: var(--text);
+
+  /*
+    粉彩紙材質背景：
+    不是圖片，是用多層漸層模擬紙張纖維與柔霧色塊。
+  */
+  background:
+    radial-gradient(circle at 18% 12%, rgba(230, 255, 248, 0.95) 0, transparent 32%),
+    radial-gradient(circle at 82% 88%, rgba(255, 231, 220, 0.9) 0, transparent 34%),
+    radial-gradient(circle at 70% 20%, rgba(255, 215, 106, 0.22) 0, transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.55) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.32) 25%, transparent 25%),
+    var(--bg);
+
+  background-size:
+    auto,
+    auto,
+    auto,
+    18px 18px,
+    22px 22px,
+    auto;
+}
+
+/* 整頁容器 */
+.ecard-page {
+  position: relative;
+
+  min-height: 100vh;
+  padding: 24px 18px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+
+  overflow: hidden;
 }
 
-.card {
+/* 頁面紙張顆粒感 */
+.ecard-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(38, 59, 56, 0.055) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 107, 74, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 40%, rgba(0, 191, 166, 0.05));
+
+  background-size:
+    11px 11px,
+    17px 17px,
+    100% 100%;
+
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* CSS-only 開關 */
+.enter-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 電子名片主體 */
+.ecard {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
-  max-width: 420px;
-  border: 1px solid #2a2a2a;
-  border-radius: 28px;
-  padding: 32px 24px;
-  background: #0d0d0d;
-}
+  max-width: 430px;
+  min-height: 640px;
 
-.profile {
+  padding: 30px 22px 24px;
+
+  border: 2px solid var(--main-light);
+  border-radius: 36px;
+
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0.96), rgba(255, 249, 235, 0.94)),
+    var(--card-bg);
+
+  box-shadow:
+    0 24px 60px var(--shadow),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+
   text-align: center;
-  margin-bottom: 32px;
+  overflow: hidden;
 }
 
-.logo {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 20px;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
+/* eCard 內部紙張紋理 */
+.ecard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(0, 143, 128, 0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 107, 74, 0.055) 1px, transparent 1px),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.28), transparent 48%, rgba(242, 223, 189, 0.22));
+
+  background-size:
+    13px 13px,
+    19px 19px,
+    100% 100%;
+
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 內容層級 */
+.brand,
+.enter-button,
+.portal-list,
+.footer,
+.star,
+.circle,
+.paper-dots {
+  position: relative;
+  z-index: 2;
+}
+
+/* 品牌區 */
+.brand {
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  width: 190px;
+  max-width: 80%;
+
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.brand-subtitle {
+  margin: 0 0 10px;
+
+  color: var(--main-dark);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.main-title {
+  margin: 0 0 12px;
+
+  color: var(--accent);
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: 1.2px;
+}
+
+.brand-description {
+  margin: 0;
+
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* TAP TO ENTER */
+.enter-button {
+  width: 210px;
+  min-height: 52px;
+
+  margin: 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: #ffffff;
+
   font-size: 14px;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 24px rgba(255, 107, 74, 0.22);
 }
 
-.label {
-  margin: 0 0 8px;
-  font-size: 12px;
-  color: #999999;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+/* 入口清單：預設不顯示 */
+.portal-list {
+  display: none;
+
+  margin-top: 24px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-h1 {
-  margin: 0 0 12px;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 1px;
+/* 點擊 enter 後 */
+.enter-toggle:checked ~ .ecard .enter-button {
+  display: none;
 }
 
-.description {
-  margin: 0;
-  color: #cfcfcf;
-  line-height: 1.7;
-  font-size: 14px;
+.enter-toggle:checked ~ .ecard .portal-list {
+  display: flex;
 }
 
-.links {
+/* 入口按鈕 */
+.portal {
+  width: 100%;
+  min-height: 64px;
+
+  padding: 12px 18px;
+
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
+  justify-content: center;
+  align-items: flex-start;
 
-.link-button {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  border: 1px solid #ffffff;
-  border-radius: 999px;
-  color: #ffffff;
+  border: 2px solid var(--main);
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text);
+
   text-decoration: none;
-  text-align: center;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  transition: 0.2s;
+  text-align: left;
+
+  box-shadow: 0 8px 20px rgba(0, 191, 166, 0.08);
 }
 
-.link-button:hover {
+.portal:hover {
   background: #ffffff;
-  color: #050505;
 }
 
-.link-button.line {
-  border-color: #7cff7c;
+.portal-title {
+  margin-bottom: 4px;
+
+  color: var(--main-dark);
+  font-size: 16px;
+  font-weight: 800;
 }
 
-.link-button.secondary {
-  border-color: #666666;
-  color: #cccccc;
+.portal-text {
+  color: var(--muted);
+  font-size: 13px;
 }
 
+/* 各入口顏色 */
+.portal-line {
+  border-color: var(--accent);
+}
+
+.portal-line .portal-title {
+  color: var(--accent);
+}
+
+.portal-fb {
+  border-color: var(--cream-border);
+}
+
+.portal-fb .portal-title {
+  color: #8a7653;
+}
+
+/* Contact 展開卡片 */
+.contact-box {
+  border: 2px solid var(--yellow);
+  border-radius: 24px;
+
+  background: rgba(255, 250, 240, 0.9);
+
+  text-align: left;
+}
+
+.contact-box summary {
+  min-height: 60px;
+  padding: 18px;
+
+  color: #9a6a00;
+  font-size: 16px;
+  font-weight: 800;
+
+  cursor: pointer;
+  list-style: none;
+}
+
+.contact-box summary::-webkit-details-marker {
+  display: none;
+}
+
+.contact-box summary::after {
+  content: "＋";
+  float: right;
+}
+
+.contact-box[open] summary::after {
+  content: "－";
+}
+
+.contact-content {
+  padding: 0 18px 18px;
+
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.contact-content p {
+  margin: 0 0 8px;
+}
+
+/* 底部 */
 .footer {
-  margin-top: 32px;
-  text-align: center;
-  color: #666666;
+  margin-top: 22px;
+
+  color: #a5aaa4;
   font-size: 12px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* 靜態小裝飾 */
+.star,
+.circle {
+  position: absolute;
+  pointer-events: none;
+}
+
+.star {
+  color: var(--accent);
+  font-size: 22px;
+  opacity: 0.7;
+}
+
+.star-1 {
+  top: 92px;
+  left: 28px;
+}
+
+.star-2 {
+  top: 170px;
+  right: 34px;
+}
+
+.star-3 {
+  bottom: 132px;
+  left: 30px;
+}
+
+.circle {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  background: var(--main-light);
+  opacity: 0.8;
+}
+
+.circle-1 {
+  top: 250px;
+  left: 36px;
+}
+
+.circle-2 {
+  right: 38px;
+  bottom: 220px;
+
+  background: var(--accent-light);
+}
+
+/* 小手機調整 */
+@media (max-width: 380px) {
+  .ecard-page {
+    padding: 16px 12px;
+  }
+
+  .ecard {
+    min-height: 610px;
+    padding: 26px 18px 22px;
+    border-radius: 30px;
+  }
+
+  .brand-logo {
+    width: 160px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+ 
+  .enter-button {
+    width: 190px;
+    min-height: 50px;
+
+    font-size: 13px;
+  }
+
+  .portal {
+    min-height: 60px;
+  }
 }
