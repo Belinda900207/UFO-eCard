@@ -31,19 +31,17 @@
             <header class="brand">
                 <img class="brand-logo" src="./images/ufo-logo.jpg" alt="UFO Logo" />
 
-                <p class="brand-subtitle">
+                <p class="brand-subtitle" data-i18n="subtitle">
                     卡牌｜玩具｜預購｜收藏
                 </p>
 
-                <h1 class="main-title">
+                <h1 class="main-title" data-i18n="title">
                     WELCOME TO UFO
                 </h1>
-
             </header>
 
-
             <!-- 進入按鈕 -->
-            <label class="enter-button" for="enterToggle">
+            <label class="enter-button" for="enterToggle" data-i18n="enter">
                 TAP TO ENTER
             </label>
 
@@ -51,26 +49,27 @@
             <section class="portal-list" aria-label="UFO 社群入口">
                 <a class="portal portal-ig" href="https://www.instagram.com/ufo.tcgshop/" target="_blank"
                     rel="noopener">
-                    <span class="portal-title">IG 星球</span>
-                    <span class="portal-text">商品照片｜限動更新</span>
+                    <span class="portal-title" data-i18n="igTitle">IG 星球</span>
+                    <span class="portal-text" data-i18n="igText">商品照片｜限動更新</span>
                 </a>
 
-                <a class="portal portal-fb" href="https://www.facebook.com/share/1U4nvcLhaY/?mibextid=wwXIfr" target="_blank" rel="noopener">
-                    <span class="portal-title">FB 基地</span>
-                    <span class="portal-text">最新公告｜活動資訊</span>
+                <a class="portal portal-fb" href="https://www.facebook.com/share/1U4nvcLhaY/?mibextid=wwXIfr"
+                    target="_blank" rel="noopener">
+                    <span class="portal-title" data-i18n="fbTitle">FB 基地</span>
+                    <span class="portal-text" data-i18n="fbText">最新公告｜活動資訊</span>
                 </a>
 
                 <a class="portal portal-line" href="https://lin.ee/q1mmfNY" target="_blank" rel="noopener">
-                    <span class="portal-title">LINE 通訊艙</span>
-                    <span class="portal-text">預購詢問｜私訊聯絡</span>
+                    <span class="portal-title" data-i18n="lineTitle">LINE 通訊艙</span>
+                    <span class="portal-text" data-i18n="lineText">預購詢問｜私訊聯絡</span>
                 </a>
 
                 <details class="contact-box">
-                    <summary>CONTACT 補給站</summary>
+                    <summary data-i18n="contactTitle">CONTACT 補給站</summary>
 
                     <div class="contact-content">
-                        <p>預購、商品詢問請優先加入 LINE。</p>
-                        <p>IG / FB 會更新最新商品、預購資訊與公告。</p>
+                        <p data-i18n="contactText1">預購、商品詢問請優先加入 LINE。</p>
+                        <p data-i18n="contactText2">IG / FB 會更新最新商品、預購資訊與公告。</p>
                     </div>
                 </details>
             </section>
@@ -80,6 +79,8 @@
             </footer>
         </section>
     </main>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
