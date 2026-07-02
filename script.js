@@ -6,6 +6,7 @@ const translations = {
 
     igTitle: "IG 星球",
     igText: "商品照片｜限動更新",
+    igUrl: "https://www.instagram.com/ufo.tcgshop/",
 
     fbTitle: "FB 基地",
     fbText: "最新公告｜活動資訊",
@@ -25,6 +26,7 @@ const translations = {
 
     igTitle: "Instagram",
     igText: "商品写真｜ストーリー更新",
+    igUrl: "https://www.instagram.com/ufo.tcgshop/",
 
     fbTitle: "Facebook",
     fbText: "最新情報｜イベント情報",
@@ -44,6 +46,7 @@ const translations = {
 
     igTitle: "Instagram",
     igText: "상품 사진｜스토리 업데이트",
+    igUrl: "https://www.instagram.com/peixuan666666/",
 
     fbTitle: "Facebook",
     fbText: "최신 소식｜이벤트 안내",
@@ -63,6 +66,7 @@ const translations = {
 
     igTitle: "Instagram",
     igText: "Product photos｜Story updates",
+    igUrl: "https://www.instagram.com/ufo.tcgshop/",
 
     fbTitle: "Facebook",
     fbText: "News｜Events",
@@ -104,5 +108,10 @@ document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = selectedTexts[key];
   }
 });
+const igLink = document.querySelector(".portal-ig");
+
+if (igLink && selectedTexts.igUrl) {
+  igLink.href = selectedTexts.igUrl;
+}
 
 console.log("目前語言：", currentLanguage);
