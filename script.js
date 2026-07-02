@@ -27,7 +27,7 @@ const translations = {
     igText: "商品写真｜ストーリー更新",
 
     fbTitle: "Facebook",
-    fbText: "最新情報｜イベント告知",
+    fbText: "最新情報｜イベント情報",
 
     lineTitle: "LINE",
     lineText: "予約相談｜お問い合わせ",
@@ -76,11 +76,16 @@ const translations = {
   }
 };
 
+const urlParams = new URLSearchParams(window.location.search);
+const langFromUrl = urlParams.get("lang");
+
 const userLanguage = navigator.language.toLowerCase();
 
 let currentLanguage = "en";
 
-if (userLanguage.startsWith("zh")) {
+if (langFromUrl && translations[langFromUrl]) {
+  currentLanguage = langFromUrl;
+} else if (userLanguage.startsWith("zh")) {
   currentLanguage = "zh";
 } else if (userLanguage.startsWith("ja")) {
   currentLanguage = "ja";
@@ -99,3 +104,5 @@ document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = selectedTexts[key];
   }
 });
+
+console.log("目前語言：", currentLanguage);
