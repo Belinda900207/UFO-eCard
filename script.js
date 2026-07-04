@@ -19,46 +19,6 @@ const translations = {
     contactText2: "IG / FB 會更新最新商品、預購資訊與公告。"
   },
 
-  ja: {
-    subtitle: "カード｜おもちゃ｜予約｜コレクション",
-    title: "WELCOME TO UFO",
-    enter: "TAP TO ENTER",
-
-    igTitle: "Instagram",
-    igText: "商品写真｜ストーリー更新",
-    igUrl: "https://www.instagram.com/ufo.tcgshop/",
-
-    fbTitle: "Facebook",
-    fbText: "最新情報｜イベント情報",
-
-    lineTitle: "LINE",
-    lineText: "予約相談｜お問い合わせ",
-
-    contactTitle: "CONTACT",
-    contactText1: "予約や商品に関するお問い合わせは LINE からお願いします。",
-    contactText2: "Instagram / Facebook では最新商品やお知らせを更新しています。"
-  },
-
-  ko: {
-    subtitle: "카드｜장난감｜예약｜컬렉션",
-    title: "WELCOME TO UFO",
-    enter: "TAP TO ENTER",
-
-    igTitle: "Instagram",
-    igText: "상품 사진｜스토리 업데이트",
-    igUrl: "https://www.instagram.com/peixuan666666/",
-
-    fbTitle: "Facebook",
-    fbText: "최신 소식｜이벤트 안내",
-
-    lineTitle: "LINE",
-    lineText: "예약 문의｜상담",
-
-    contactTitle: "CONTACT",
-    contactText1: "예약 및 상품 문의는 LINE으로 연락해 주세요.",
-    contactText2: "Instagram / Facebook에서 신상품과 공지사항을 확인할 수 있습니다."
-  },
-
   en: {
     subtitle: "Cards｜Toys｜Pre-order｜Collection",
     title: "WELCOME TO UFO",
@@ -91,10 +51,6 @@ if (langFromUrl && translations[langFromUrl]) {
   currentLanguage = langFromUrl;
 } else if (userLanguage.startsWith("zh")) {
   currentLanguage = "zh";
-} else if (userLanguage.startsWith("ja")) {
-  currentLanguage = "ja";
-} else if (userLanguage.startsWith("ko")) {
-  currentLanguage = "ko";
 }
 
 const selectedTexts = translations[currentLanguage];
