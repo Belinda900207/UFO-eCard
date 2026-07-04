@@ -14,29 +14,35 @@ const translations = {
     lineTitle: "LINE 通訊艙",
     lineText: "預購詢問｜私訊聯絡",
 
+    threadsTitle: "Threads 星球",
+    threadsText: "日常更新｜社群互動",
+
     contactTitle: "CONTACT 補給站",
     contactText1: "預購、商品詢問請優先加入 LINE。",
     contactText2: "IG / FB 會更新最新商品、預購資訊與公告。"
   },
 
   en: {
-    subtitle: "Cards｜Toys｜Pre-order｜Collection",
+    subtitle: "Cards｜Toys｜Preorder｜Collect",
     title: "WELCOME TO UFO",
     enter: "TAP TO ENTER",
 
     igTitle: "Instagram",
-    igText: "Product photos｜Story updates",
+    igText: "Photos｜Stories",
     igUrl: "https://www.instagram.com/ufo.tcgshop/",
 
     fbTitle: "Facebook",
     fbText: "News｜Events",
 
     lineTitle: "LINE",
-    lineText: "Pre-orders｜Contact us",
+    lineText: "Preorder｜Message us",
+
+    threadsTitle: "Threads",
+    threadsText: "Daily｜Community",
 
     contactTitle: "CONTACT",
-    contactText1: "For pre-orders and product questions, please contact us via LINE.",
-    contactText2: "Follow Instagram / Facebook for new items and announcements."
+    contactText1: "For preorders or product questions, message us on LINE.",
+    contactText2: "Follow Instagram / Facebook for new items and updates."
   }
 };
 
@@ -71,3 +77,27 @@ if (igLink && selectedTexts.igUrl) {
 }
 
 console.log("目前語言：", currentLanguage);
+const brandLogo = document.querySelector(".brand-logo");
+
+let logoFlipDirection = "left";
+
+if (brandLogo) {
+  brandLogo.addEventListener("click", () => {
+    brandLogo.classList.remove("flip-left", "flip-right");
+
+    // 強制重置動畫，讓連續點擊也能重新觸發
+    void brandLogo.offsetWidth;
+
+    if (logoFlipDirection === "left") {
+      brandLogo.classList.add("flip-left");
+      logoFlipDirection = "right";
+    } else {
+      brandLogo.classList.add("flip-right");
+      logoFlipDirection = "left";
+    }
+  });
+
+  brandLogo.addEventListener("animationend", () => {
+    brandLogo.classList.remove("flip-left", "flip-right");
+  });
+}

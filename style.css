@@ -15,6 +15,28 @@
 
   --cream-border: #f2dfbd;
   --shadow: rgba(0, 143, 128, 0.14);
+
+  /* 社群柔化色：保留平台辨識，但不要用官方高飽和原色 */
+  --ig-bg-1: #fff1f2;
+  --ig-bg-2: #fce7f3;
+  --ig-bg-3: #f5e8ff;
+  --ig-text: #7a315f;
+  --ig-fill: linear-gradient(135deg, #f9a8d4, #c4b5fd);
+
+  --fb-bg-1: #f0f7ff;
+  --fb-bg-2: #dbeafe;
+  --fb-text: #244c8f;
+  --fb-fill: linear-gradient(135deg, #bfdbfe, #93c5fd);
+
+  --line-bg-1: #f0fff4;
+  --line-bg-2: #dcfce7;
+  --line-text: #226b3a;
+  --line-fill: linear-gradient(135deg, #bbf7d0, #86efac);
+
+  --threads-bg-1: #f7f2ff;
+  --threads-bg-2: #ede9fe;
+  --threads-text: #56358f;
+  --threads-fill: linear-gradient(135deg, #ddd6fe, #a78bfa);
 }
 
 /* 全域設定 */
@@ -29,10 +51,6 @@ body {
   font-family: Arial, "Noto Sans TC", sans-serif;
   color: var(--text);
 
-  /*
-    粉彩紙材質背景：
-    不是圖片，是用多層漸層模擬紙張纖維與柔霧色塊。
-  */
   background:
     radial-gradient(circle at 18% 12%, rgba(230, 255, 248, 0.95) 0, transparent 32%),
     radial-gradient(circle at 82% 88%, rgba(255, 231, 220, 0.9) 0, transparent 34%),
@@ -76,8 +94,8 @@ body {
     linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 40%, rgba(0, 191, 166, 0.05));
 
   background-size:
-    11px 11px,
-    17px 17px,
+    8px 8px,
+    13px 13px,
     100% 100%;
 
   opacity: 0.45;
@@ -98,9 +116,12 @@ body {
 
   width: 100%;
   max-width: 430px;
-  min-height: 640px;
+  min-height: 720px;
 
   padding: 30px 22px 24px;
+
+  display: flex;
+  flex-direction: column;
 
   border: 2px solid var(--main-light);
   border-radius: 36px;
@@ -129,8 +150,8 @@ body {
     linear-gradient(115deg, rgba(255, 255, 255, 0.28), transparent 48%, rgba(242, 223, 189, 0.22));
 
   background-size:
-    13px 13px,
-    19px 19px,
+    10px 10px,
+    15px 15px,
     100% 100%;
 
   opacity: 0.55;
@@ -153,27 +174,109 @@ body {
 /* 品牌區 */
 .brand {
   margin-bottom: 20px;
+  perspective: 1000px;
 }
 
 .brand-logo {
-  width: 190px;
+  width: 160px;
+  height: 160px;
   max-width: 80%;
 
   display: block;
   margin: 0 auto 16px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 0px solid var(--main);
+  padding: 2px;
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(90, 240, 215, 0.8),
+    0 12px 28px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  will-change: transform;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* 滑鼠滑上去：懸浮 */
+.brand-logo:hover {
+  transform: translateY(-8px) scale(1.04);
+
+  box-shadow:
+    0 0 0 5px rgba(184, 238, 228, 0.95),
+    0 18px 38px rgba(0, 143, 128, 0.26);
+
+  filter: brightness(1.04);
+}
+
+/* 點一下：往左水平翻轉 */
+.brand-logo.flip-left {
+  animation: logoFlipLeft 0.9s cubic-bezier(0.22, 0.9, 0.24, 1);
+}
+
+/* 再點一下：往右水平翻轉 */
+.brand-logo.flip-right {
+  animation: logoFlipRight 0.9s cubic-bezier(0.22, 0.9, 0.24, 1);
+}
+
+@keyframes logoFlipLeft {
+  0% {
+    transform: translateY(-8px) rotateY(0deg) scale(1.04);
+  }
+
+  50% {
+    transform: translateY(-10px) rotateY(-180deg) scale(1.06);
+  }
+
+  100% {
+    transform: translateY(-8px) rotateY(-360deg) scale(1.04);
+  }
+}
+
+@keyframes logoFlipRight {
+  0% {
+    transform: translateY(-8px) rotateY(0deg) scale(1.04);
+  }
+
+  50% {
+    transform: translateY(-10px) rotateY(180deg) scale(1.06);
+  }
+
+  100% {
+    transform: translateY(-8px) rotateY(360deg) scale(1.04);
+  }
 }
 
 .brand-subtitle {
+  max-width: 100%;
   margin: 0 0 10px;
 
   color: var(--main-dark);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 1.2px;
+  line-height: 1.6;
+
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .main-title {
-  margin: 0 0 12px;
+  margin: auto 0 12px;
 
   color: var(--accent);
   font-size: 28px;
@@ -189,13 +292,12 @@ body {
   line-height: 1.8;
 }
 
-
 /* TAP TO ENTER */
 .enter-button {
   width: 210px;
   min-height: 52px;
 
-  margin: 0 auto;
+  margin: auto auto 0;
 
   display: flex;
   justify-content: center;
@@ -214,6 +316,17 @@ body {
   cursor: pointer;
 
   box-shadow: 0 12px 24px rgba(255, 107, 74, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.enter-button:hover {
+  transform: translateY(-2px);
+  background: #ff5c38;
+  box-shadow: 0 16px 30px rgba(255, 107, 74, 0.28);
 }
 
 /* 入口清單：預設不顯示 */
@@ -226,25 +339,32 @@ body {
 }
 
 /* 點擊 enter 後 */
-.enter-toggle:checked ~ .ecard .enter-button {
+.enter-toggle:checked~.ecard .enter-button {
   display: none;
 }
 
-.enter-toggle:checked ~ .ecard .portal-list {
+.enter-toggle:checked~.ecard .portal-list {
   display: flex;
+}
+
+.enter-toggle:checked~.ecard .main-title {
+  display: none;
 }
 
 /* 入口按鈕 */
 .portal {
-  width: 100%;
-  min-height: 64px;
+  position: relative;
+  overflow: hidden;
 
-  padding: 12px 18px;
+  width: 100%;
+  min-height: 72px;
+
+  padding: 14px 18px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 
   border: 2px solid var(--main);
   border-radius: 24px;
@@ -256,10 +376,55 @@ body {
   text-align: left;
 
   box-shadow: 0 8px 20px rgba(0, 191, 166, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
-.portal:hover {
-  background: #ffffff;
+/* 左到右填滿動畫 */
+.portal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: var(--portal-fill);
+  background-size: 100% 100%;
+  border-radius: inherit;
+
+  transition: width 0.42s ease;
+
+  z-index: 0;
+}
+
+/* 讓文字與 icon 壓在填滿色塊上面 */
+.portal-info,
+.portal-title,
+.portal-text,
+.portal-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.portal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.portal-title,
+.portal-text,
+.portal-icon {
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .portal-title {
@@ -275,21 +440,124 @@ body {
   font-size: 13px;
 }
 
-/* 各入口顏色 */
-.portal-line {
-  border-color: var(--accent);
+.portal-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.56);
+  backdrop-filter: blur(2px);
+
+  font-size: 20px;
 }
 
-.portal-line .portal-title {
-  color: var(--accent);
+.portal:hover .portal-icon,
+.portal:active .portal-icon {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
 }
 
+/* hover / active 狀態 */
+.portal:hover::before,
+.portal:active::before {
+  width: 100%;
+}
+
+.portal:hover,
+.portal:active {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 191, 166, 0.16);
+}
+
+/* IG：柔粉紫 */
+.portal-ig {
+  --portal-fill: var(--ig-fill);
+
+  border-color: rgba(122, 49, 95, 0.24);
+  background: linear-gradient(135deg, var(--ig-bg-1), var(--ig-bg-2), var(--ig-bg-3));
+}
+
+.portal-ig .portal-title {
+  color: var(--ig-text);
+}
+
+/* FB：柔淡藍 */
 .portal-fb {
-  border-color: var(--cream-border);
+  --portal-fill: var(--fb-fill);
+
+  border-color: rgba(36, 76, 143, 0.22);
+  background: linear-gradient(135deg, var(--fb-bg-1), var(--fb-bg-2));
 }
 
 .portal-fb .portal-title {
-  color: #8a7653;
+  color: var(--fb-text);
+}
+
+/* LINE：柔薄荷綠 */
+.portal-line {
+  --portal-fill: var(--line-fill);
+
+  border-color: rgba(34, 107, 58, 0.22);
+  background: linear-gradient(135deg, var(--line-bg-1), var(--line-bg-2));
+}
+
+.portal-line .portal-title {
+  color: var(--line-text);
+}
+
+/* Threads：淡紫星球感 */
+.portal-threads {
+  --portal-fill: var(--threads-fill);
+
+  border-color: rgba(86, 53, 143, 0.22);
+  background: linear-gradient(135deg, var(--threads-bg-1), var(--threads-bg-2));
+}
+
+.portal-threads .portal-title {
+  color: var(--threads-text);
+}
+
+/* 各平台 icon 顏色 */
+.portal-ig .portal-icon {
+  color: var(--ig-text);
+}
+
+.portal-threads .portal-icon {
+  color: var(--threads-text);
+}
+
+.portal-fb .portal-icon {
+  color: var(--fb-text);
+}
+
+.portal-line .portal-icon {
+  color: var(--line-text);
+}
+
+/* hover / active 後文字與 icon 統一變白 */
+.portal-ig:hover .portal-title,
+.portal-ig:hover .portal-text,
+.portal-ig:active .portal-title,
+.portal-ig:active .portal-text,
+.portal-fb:hover .portal-title,
+.portal-fb:hover .portal-text,
+.portal-fb:active .portal-title,
+.portal-fb:active .portal-text,
+.portal-line:hover .portal-title,
+.portal-line:hover .portal-text,
+.portal-line:active .portal-title,
+.portal-line:active .portal-text,
+.portal-threads:hover .portal-title,
+.portal-threads:hover .portal-text,
+.portal-threads:active .portal-title,
+.portal-threads:active .portal-text {
+  color: #ffffff;
 }
 
 /* Contact 展開卡片 */
@@ -351,7 +619,8 @@ body {
   margin: 0;
 }
 
-/* 靜態小裝飾 */
+/* 背景小裝飾 */
+/* 背景小裝飾 */
 .star,
 .circle {
   position: absolute;
@@ -362,101 +631,8 @@ body {
   color: var(--accent);
   font-size: 22px;
   opacity: 0.7;
-}
-
-.star-1 {
-  top: 92px;
-  left: 28px;
-}
-
-.star-2 {
-  top: 170px;
-  right: 34px;
-}
-
-.star-3 {
-  bottom: 132px;
-  left: 30px;
-}
-
-.circle {
-  width: 14px;
-  height: 14px;
-
-  border-radius: 50%;
-  background: var(--main-light);
-  opacity: 0.8;
-}
-
-.circle-1 {
-  top: 250px;
-  left: 36px;
-}
-
-.circle-2 {
-  right: 38px;
-  bottom: 220px;
-
-  background: var(--accent-light);
-}
-
-/* 小手機調整 */
-@media (max-width: 380px) {
-  .ecard-page {
-    padding: 16px 12px;
-  }
-
-  .ecard {
-    min-height: 610px;
-    padding: 26px 18px 22px;
-    border-radius: 30px;
-  }
-
-  .brand-logo {
-    width: 160px;
-  }
-
-  .main-title {
-    font-size: 24px;
-  }
-
- 
-  .enter-button {
-    width: 190px;
-    min-height: 50px;
-
-    font-size: 13px;
-  }
-
-  .portal {
-    min-height: 60px;
-  }
-}
-/* 背景小裝飾：緩慢漂浮與閃爍 */
-.star {
-  color: var(--accent);
-  font-size: 22px;
-  opacity: 0.7;
 
   animation: starFloat 4s ease-in-out infinite;
-}
-
-.star-1 {
-  top: 92px;
-  left: 28px;
-  animation-delay: 0s;
-}
-
-.star-2 {
-  top: 170px;
-  right: 34px;
-  animation-delay: 0.8s;
-}
-
-.star-3 {
-  bottom: 132px;
-  left: 30px;
-  animation-delay: 1.4s;
 }
 
 .circle {
@@ -470,18 +646,106 @@ body {
   animation: circleFloat 5s ease-in-out infinite;
 }
 
+/* Logo 周圍：左上橘色星星 */
+.star-1 {
+  top: 92px;
+  left: 34px;
+  font-size: 20px;
+  color: var(--accent);
+  animation-delay: 0s;
+}
+
+/* Logo 周圍：右上綠色小星 */
+.star-2 {
+  top: 78px;
+  right: 78px;
+  font-size: 16px;
+  color: var(--main);
+  opacity: 0.75;
+  animation-delay: 0.7s;
+}
+
+/* Logo 周圍：右側橘色空心感 */
+.star-3 {
+  top: 180px;
+  right: 38px;
+  font-size: 22px;
+  color: var(--accent);
+  opacity: 0.55;
+  animation-delay: 1.4s;
+}
+
+/* Logo 周圍：左側小橘星 */
+.star-4 {
+  top: 142px;
+  left: 112px;
+  font-size: 15px;
+  color: var(--accent);
+  opacity: 0.7;
+  animation-delay: 2s;
+}
+
+/* Logo 周圍：右下小綠星 */
+.star-5 {
+  top: 205px;
+  right: 116px;
+  font-size: 15px;
+  color: var(--main);
+  opacity: 0.65;
+  animation-delay: 2.6s;
+}
+
+/* Logo 周圍：左下橘星 */
+.star-6 {
+  top: 210px;
+  left: 72px;
+  font-size: 17px;
+  color: var(--accent);
+  opacity: 0.55;
+  animation-delay: 3.2s;
+}
+
+/* Logo 周圍：左下綠圓 */
 .circle-1 {
-  top: 250px;
-  left: 36px;
+  top: 246px;
+  left: 42px;
+  width: 14px;
+  height: 14px;
+  background: var(--main-light);
   animation-delay: 0.4s;
 }
 
+/* Logo 周圍：右上橘圓 */
 .circle-2 {
-  right: 38px;
-  bottom: 220px;
-
-  background: var(--accent-light);
+  top: 108px;
+  right: 116px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  opacity: 0.65;
   animation-delay: 1.2s;
+}
+
+/* Logo 周圍：左上綠圓 */
+.circle-3 {
+  top: 118px;
+  left: 118px;
+  width: 9px;
+  height: 9px;
+  background: var(--main);
+  opacity: 0.55;
+  animation-delay: 2.1s;
+}
+
+/* Logo 周圍：右下黃圓 */
+.circle-4 {
+  top: 238px;
+  right: 88px;
+  width: 10px;
+  height: 10px;
+  background: var(--yellow);
+  opacity: 0.65;
+  animation-delay: 2.8s;
 }
 
 @keyframes starFloat {
@@ -517,87 +781,63 @@ body {
     transform: translateY(0);
   }
 }
-/* 入口按鈕：左到右填滿動畫 */
-.portal {
-  position: relative;
-  overflow: hidden;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+/* 減少動態偏好 */
+@media (prefers-reduced-motion: reduce) {
+
+  .star,
+  .circle {
+    animation: none;
+  }
+
+  .portal,
+  .portal::before,
+  .portal-title,
+  .portal-text,
+  .portal-icon,
+  .enter-button {
+    transition: none;
+  }
 }
 
-/* 填滿色塊 */
-.portal::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* 小手機調整 */
+@media (max-width: 380px) {
+  .ecard-page {
+    padding: 16px 12px;
+  }
 
-  width: 0%;
-  height: 100%;
+  .ecard {
+    min-height: 610px;
+    padding: 26px 18px 22px;
+    border-radius: 30px;
+  }
 
-  background: var(--portal-fill);
-  border-radius: inherit;
+  .brand-logo {
+    width: 160px;
+    height: 160px;
+  }
 
-  transition: width 0.42s ease;
+  .main-title {
+    font-size: 24px;
+  }
 
-  z-index: 0;
-}
+  .enter-button {
+    width: 190px;
+    min-height: 50px;
 
-/* 讓文字壓在填滿色塊上面 */
-.portal-title,
-.portal-text {
-  position: relative;
-  z-index: 1;
+    font-size: 13px;
+  }
 
-  transition: color 0.25s ease;
-}
+  .portal {
+    min-height: 68px;
+    padding: 12px 16px;
+  }
 
-/* hover / 點擊時填滿 */
-.portal:hover::before,
-.portal:active::before {
-  width: 100%;
-}
+  .portal-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
 
-.portal:hover,
-.portal:active {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(0, 191, 166, 0.16);
-}
-
-/* IG 填滿色 */
-.portal-ig {
-  --portal-fill: var(--main);
-}
-
-.portal-ig:hover .portal-title,
-.portal-ig:hover .portal-text,
-.portal-ig:active .portal-title,
-.portal-ig:active .portal-text {
-  color: #ffffff;
-}
-
-/* FB 填滿色 */
-.portal-fb {
-  --portal-fill: #f8e7c6;
-}
-
-.portal-fb:hover .portal-title,
-.portal-fb:hover .portal-text,
-.portal-fb:active .portal-title,
-.portal-fb:active .portal-text {
-  color: #5b4b31;
-}
-
-/* LINE 填滿色 */
-.portal-line {
-  --portal-fill: var(--accent);
-}
-
-.portal-line:hover .portal-title,
-.portal-line:hover .portal-text,
-.portal-line:active .portal-title,
-.portal-line:active .portal-text {
-  color: #ffffff;
+    font-size: 18px;
+  }
 }
