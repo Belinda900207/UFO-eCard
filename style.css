@@ -295,9 +295,9 @@ body {
 /* TAP TO ENTER */
 .enter-button {
   width: 210px;
-  min-height: 52px;
+  min-height: 65px;
 
-  margin: auto auto 0;
+  margin: auto auto 50px;
 
   display: flex;
   justify-content: center;
