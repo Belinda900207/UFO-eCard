@@ -6,7 +6,7 @@ const translations = {
 
     igTitle: "IG 星球",
     igText: "商品照片｜限動更新",
-    igUrl: "https://www.instagram.com/ufo.tcgshop/",
+    
 
     fbTitle: "FB 基地",
     fbText: "最新公告｜活動資訊",
@@ -29,7 +29,7 @@ const translations = {
 
     igTitle: "Instagram",
     igText: "Photos｜Stories",
-    igUrl: "https://www.instagram.com/ufo.tcgshop/",
+    
 
     fbTitle: "Facebook",
     fbText: "News｜Events",
